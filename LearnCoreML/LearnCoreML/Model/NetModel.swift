@@ -10,6 +10,9 @@ import Vision
 
 class NetModel {
 
+    static let shaerd = NetModel()
+    private init() {}
+
     enum CoreMLModel {
         case squeezeNet
         case mobileNetV2
@@ -43,5 +46,4 @@ class NetModel {
             completion(results)
         }
     }
-
 }

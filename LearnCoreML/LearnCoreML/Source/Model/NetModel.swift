@@ -5,6 +5,7 @@
 //  Created by okamoto yuki on 2022/03/24.
 //
 
+import CoreImage
 import CoreML
 import Vision
 
@@ -31,7 +32,7 @@ class NetModel {
         }
     }
 
-    func request(_ coreMLModel: CoreMLModel, errorHandler: ((Error) -> Void)? = nil, completion: @escaping ([VNClassificationObservation]?) -> Void) -> VNCoreMLRequest? {
+    func request(_ coreMLModel: CoreMLModel, errorHandler: ((Error) -> Void)? = nil, completion: @escaping ([Classification]?) -> Void) -> VNCoreMLRequest? {
         guard let model = try? coreMLModel.model else {
             return nil
         }
@@ -42,8 +43,18 @@ class NetModel {
                 return
             }
 
-            let results = request.results as? [VNClassificationObservation]
-            completion(results)
+            guard let results = request.results as? [VNClassificationObservation] else {
+                completion(nil)
+                return
+            }
+
+            completion(results.map { result in
+                Classification(identifier: result.identifier, confidence: result.confidence)
+            })
         }
+    }
+
+    func perform(ciImage: CIImage, requests: [VNCoreMLRequest]) throws {
+        try VNImageRequestHandler(ciImage: ciImage).perform(requests)
     }
 }

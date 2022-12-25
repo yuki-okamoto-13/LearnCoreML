@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fMe-Pd-xN1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fMe-Pd-xN1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,13 +18,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sq4-jQ-YRy">
-                                <rect key="frame" x="0.0" y="88" width="414" height="674"/>
+                                <rect key="frame" x="0.0" y="92" width="414" height="462"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RLU-FX-si7">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="674"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="462"/>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.92143476009368896" green="0.92143464088439941" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="RLU-FX-si7" firstAttribute="top" secondItem="sq4-jQ-YRy" secondAttribute="top" id="Oxx-Hb-3zi"/>
                                     <constraint firstAttribute="bottom" secondItem="RLU-FX-si7" secondAttribute="bottom" id="hGQ-GO-H6y"/>
@@ -32,10 +33,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1V-e8-ZsE">
-                                <rect key="frame" x="0.0" y="762" width="414" height="100"/>
+                                <rect key="frame" x="0.0" y="554" width="414" height="308"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="L46-n5-miG">
-                                        <rect key="frame" x="160" y="0.0" width="254" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="308"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                         <connections>
@@ -43,30 +44,20 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="PcT-ao-aZq"/>
                                         </connections>
                                     </tableView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3IC-7B-60S">
-                                        <rect key="frame" x="0.0" y="0.0" width="160" height="100"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="0km-w8-rjg"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="3IC-7B-60S" secondAttribute="bottom" id="0aR-T4-njU"/>
-                                    <constraint firstItem="3IC-7B-60S" firstAttribute="leading" secondItem="x1V-e8-ZsE" secondAttribute="leading" id="FXb-Lb-z1C"/>
-                                    <constraint firstItem="3IC-7B-60S" firstAttribute="top" secondItem="x1V-e8-ZsE" secondAttribute="top" id="J9Q-Ja-JEW"/>
                                     <constraint firstAttribute="trailing" secondItem="L46-n5-miG" secondAttribute="trailing" id="X0w-q5-nrq"/>
                                     <constraint firstItem="L46-n5-miG" firstAttribute="top" secondItem="x1V-e8-ZsE" secondAttribute="top" id="aa1-lm-Ft3"/>
-                                    <constraint firstAttribute="height" constant="100" id="nmz-VG-R2Z"/>
+                                    <constraint firstItem="L46-n5-miG" firstAttribute="leading" secondItem="x1V-e8-ZsE" secondAttribute="leading" id="ebR-Rn-nFC"/>
                                     <constraint firstAttribute="bottom" secondItem="L46-n5-miG" secondAttribute="bottom" id="o2F-Jg-Dwb"/>
-                                    <constraint firstItem="L46-n5-miG" firstAttribute="leading" secondItem="3IC-7B-60S" secondAttribute="trailing" id="y6v-0G-q9x"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="x1V-e8-ZsE" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.4" id="6gJ-Sf-4tv"/>
                             <constraint firstItem="sq4-jQ-YRy" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="8iv-pO-Kf2"/>
                             <constraint firstItem="x1V-e8-ZsE" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="De9-8y-I0i"/>
                             <constraint firstItem="x1V-e8-ZsE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="EHa-gW-H48"/>
@@ -103,7 +94,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fMe-Pd-xN1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="tEf-ij-bkg">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -117,7 +108,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="camera" catalog="system" width="128" height="93"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

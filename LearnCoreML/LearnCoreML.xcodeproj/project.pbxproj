@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E615F19629582E9100E0BA19 /* ClassificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E615F19529582E9100E0BA19 /* ClassificationTableViewCell.xib */; };
+		E61BF3A22958236600A3DE46 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E61BF3A12958236600A3DE46 /* Classification.swift */; };
 		E6BD49CA27EF1464001275A1 /* ClassificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BD49C827EF1464001275A1 /* ClassificationTableViewCell.swift */; };
-		E6BD49CB27EF1464001275A1 /* ClassificationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E6BD49C927EF1464001275A1 /* ClassificationTableViewCell.xib */; };
 		E6BD49CE27F1FD89001275A1 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = E6BD49CD27F1FD89001275A1 /* Settings.bundle */; };
 		E6F9433427EC36D50044A282 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F9433327EC36D50044A282 /* AppDelegate.swift */; };
 		E6F9433627EC36D50044A282 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F9433527EC36D50044A282 /* SceneDelegate.swift */; };
@@ -42,8 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E615F19529582E9100E0BA19 /* ClassificationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClassificationTableViewCell.xib; sourceTree = "<group>"; };
+		E61BF3A12958236600A3DE46 /* Classification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
 		E6BD49C827EF1464001275A1 /* ClassificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassificationTableViewCell.swift; sourceTree = "<group>"; };
-		E6BD49C927EF1464001275A1 /* ClassificationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClassificationTableViewCell.xib; sourceTree = "<group>"; };
 		E6BD49CD27F1FD89001275A1 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		E6F9433027EC36D50044A282 /* LearnCoreML.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnCoreML.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F9433327EC36D50044A282 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E615F19729582ECB00E0BA19 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E6BD49C827EF1464001275A1 /* ClassificationTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E615F19829582EE000E0BA19 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				E6F9433327EC36D50044A282 /* AppDelegate.swift */,
+				E6F9433527EC36D50044A282 /* SceneDelegate.swift */,
+				E61BF3A429582E4900A3DE46 /* Controller */,
+				E61BF3A329582E3300A3DE46 /* Entity */,
+				E6F9436927EC3E270044A282 /* Model */,
+				E615F19729582ECB00E0BA19 /* View */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		E616B7E427F2819700D5DA4E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,13 +120,34 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		E6BD49CC27EF1475001275A1 /* Main */ = {
+		E61BF3A329582E3300A3DE46 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				E61BF3A12958236600A3DE46 /* Classification.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		E61BF3A429582E4900A3DE46 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				E6F9433727EC36D50044A282 /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E61BF3A529582E6100A3DE46 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E615F19529582E9100E0BA19 /* ClassificationTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E6BD49CC27EF1475001275A1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
 				E6F9433927EC36D50044A282 /* Main.storyboard */,
-				E6BD49C827EF1464001275A1 /* ClassificationTableViewCell.swift */,
-				E6BD49C927EF1464001275A1 /* ClassificationTableViewCell.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -131,11 +175,9 @@
 		E6F9433227EC36D50044A282 /* LearnCoreML */ = {
 			isa = PBXGroup;
 			children = (
-				E6F9433327EC36D50044A282 /* AppDelegate.swift */,
-				E6F9433527EC36D50044A282 /* SceneDelegate.swift */,
 				E6F9434127EC36D60044A282 /* Info.plist */,
-				E6F9436927EC3E270044A282 /* Model */,
 				E616B7E427F2819700D5DA4E /* Resource */,
+				E615F19829582EE000E0BA19 /* Source */,
 				E6F9436827EC3E150044A282 /* UserInterface */,
 			);
 			path = LearnCoreML;
@@ -172,6 +214,7 @@
 			children = (
 				E6F9433E27EC36D60044A282 /* LaunchScreen.storyboard */,
 				E6BD49CC27EF1475001275A1 /* Main */,
+				E61BF3A529582E6100A3DE46 /* View */,
 			);
 			path = UserInterface;
 			sourceTree = "<group>";
@@ -293,7 +336,7 @@
 				E6F9433D27EC36D60044A282 /* Assets.xcassets in Resources */,
 				E6BD49CE27F1FD89001275A1 /* Settings.bundle in Resources */,
 				E6F9433B27EC36D50044A282 /* Main.storyboard in Resources */,
-				E6BD49CB27EF1464001275A1 /* ClassificationTableViewCell.xib in Resources */,
+				E615F19629582E9100E0BA19 /* ClassificationTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,6 +364,7 @@
 				E6F9436C27EC3EE00044A282 /* NetModel.swift in Sources */,
 				E6F9433827EC36D50044A282 /* MainViewController.swift in Sources */,
 				E6F9433427EC36D50044A282 /* AppDelegate.swift in Sources */,
+				E61BF3A22958236600A3DE46 /* Classification.swift in Sources */,
 				E6BD49CA27EF1464001275A1 /* ClassificationTableViewCell.swift in Sources */,
 				E6F9433627EC36D50044A282 /* SceneDelegate.swift in Sources */,
 				E6F9436727EC3D9C0044A282 /* MobileNetV2.mlmodel in Sources */,
@@ -501,7 +545,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2AFQJ954V;
+				DEVELOPMENT_TEAM = 54XRQA79XV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LearnCoreML/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "このアプリは画像解析のためにカメラを使用します";
@@ -533,7 +577,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H2AFQJ954V;
+				DEVELOPMENT_TEAM = 54XRQA79XV;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LearnCoreML/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "このアプリは画像解析のためにカメラを使用します";

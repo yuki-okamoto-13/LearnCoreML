@@ -6,18 +6,16 @@
 //
 
 import UIKit
-import Vision  // TODO: このモジュールには依存しないようにする
 
 class MainViewController: UIViewController {
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var tableView: UITableView!
 
-    private var classificationObservations: [VNClassificationObservation] = []    // TODO: 表示専用のクラス作る
+    private var classificationObservations: [Classification] = []
 
     private let imagePicker = UIImagePickerController()
     private var imagePickerAlert: UIAlertController!
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +24,6 @@ class MainViewController: UIViewController {
         setupTableView()
     }
 
-
     @IBAction private func onTapCameraButton(_ sender: Any) {
         presentImagePickerIfAvailable(sourceType: .camera)
     }
@@ -34,12 +31,14 @@ class MainViewController: UIViewController {
     @IBAction private func onTapPhotoLibraryButton(_ sender: Any) {
         presentImagePickerIfAvailable(sourceType: .photoLibrary)
     }
+}
 
-
+extension MainViewController {
     private func classifyObjects(image: UIImage) {
-        let request = NetModel.shaerd.request(.mobileNetV2) { results in
-            self.classificationObservations = results ?? []
-            self.reloadTableView()
+        let request = NetModel.shaerd.request(.mobileNetV2) { [self] results in
+            let confidenceThreshold: Float = 0.01
+            classificationObservations = results?.filter { !$0.confidence.isLess(than: confidenceThreshold) } ?? []
+            reloadTableView()
         }
 
         guard let ciImage = CIImage(image: image),
@@ -48,17 +47,15 @@ class MainViewController: UIViewController {
         }
 
         do {
-            try VNImageRequestHandler(ciImage: ciImage).perform([request])
-        }
-        catch {
+            try NetModel.shaerd.perform(ciImage: ciImage, requests: [request])
+        } catch {
             print(error)
         }
     }
 }
 
-
 extension MainViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true)
 
         guard let image = info[.originalImage] as? UIImage else { return }
@@ -76,14 +73,14 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
     private func setupImagePickerAlert() {
         imagePickerAlert = UIAlertController(title: "環境設定", message: "カメラ／写真へのアクセスを許可してください", preferredStyle: .alert)
 
-        let defaultAction = UIAlertAction(title: "設定", style: .default) { action in
+        let defaultAction = UIAlertAction(title: "設定", style: .default) { _ in
             // アプリの設定を開く
             guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
             UIApplication.shared.open(url)
         }
         imagePickerAlert.addAction(defaultAction)
 
-        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { action in
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { _ in
             // do nothing
         }
         imagePickerAlert.addAction(cancelAction)
@@ -101,12 +98,11 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
     }
 }
 
-
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: "ClassificationTableViewCell", bundle: nil), forCellReuseIdentifier: "ClassificationTableViewCell")
+        tableView.register(UINib(nibName: ClassificationTableViewCell.nibName, bundle: nil), forCellReuseIdentifier: ClassificationTableViewCell.reuseIdentifier)
 
         tableView.rowHeight = ClassificationTableViewCell.height
     }
@@ -120,8 +116,20 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ClassificationTableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ClassificationTableViewCell.reuseIdentifier, for: indexPath) as? ClassificationTableViewCell else {
+            return UITableViewCell()
+        }
+
         cell.configure(by: classificationObservations[indexPath.row])
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let identifier = classificationObservations[indexPath.row].firstIdentifier?.replacingOccurrences(of: " ", with: "+") ?? ""
+
+        guard let url = URL(string: "https://www.google.com/search?q=\(identifier)") else { return }
+        UIApplication.shared.open(url)
+
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 }

@@ -698,6 +698,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LearnCoreML/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "このアプリは画像解析のためにカメラを使用します";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "このアプリは画像保存のためにフォトライブラリを使用します";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "このアプリは画像解析のためにフォトライブラリを使用します";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -731,6 +732,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LearnCoreML/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "このアプリは画像解析のためにカメラを使用します";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "このアプリは画像保存のためにフォトライブラリを使用します";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "このアプリは画像解析のためにフォトライブラリを使用します";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

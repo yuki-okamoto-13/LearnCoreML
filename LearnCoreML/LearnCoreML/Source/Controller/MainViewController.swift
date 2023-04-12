@@ -36,7 +36,7 @@ class MainViewController: UIViewController {
 extension MainViewController {
     private func classifyObjects(image: UIImage) {
         let request = NetModel.shaerd.request(.mobileNetV2) { [self] results in
-            let confidenceThreshold: Float = 0.01
+            let confidenceThreshold: Float = 0.05
             classificationObservations = results?.filter { !$0.confidence.isLess(than: confidenceThreshold) } ?? []
             reloadTableView()
         }
@@ -61,6 +61,10 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
         guard let image = info[.originalImage] as? UIImage else { return }
         imageView.image = image
         classifyObjects(image: image)
+
+        if picker.sourceType == .camera {
+            saveImageIfNeeded(image: image)
+        }
     }
 
     private func setupImagePicker() {
@@ -68,6 +72,10 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
         imagePicker.allowsEditing = false
 
         setupImagePickerAlert()
+    }
+
+    private func setCameraOverlayView(imageView: UIImageView) {
+        imagePicker.cameraOverlayView = imageView
     }
 
     private func setupImagePickerAlert() {
@@ -94,7 +102,32 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
         }
 
         imagePicker.sourceType = sourceType
+
+        if sourceType == .camera {
+            imagePicker.cameraCaptureMode = .photo
+        }
+
         present(imagePicker, animated: true)
+    }
+
+    private func saveImageIfNeeded(image: UIImage) {
+        let confirmDialog = UIAlertController(title: "画像保存", message: "撮影した画像を保存しますか？", preferredStyle: .alert)
+
+        let defaultAction = UIAlertAction(title: "はい", style: .default) { [self] _ in
+            UIImageWriteToSavedPhotosAlbum(image, self, #selector(showSaveImageResult(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+        confirmDialog.addAction(defaultAction)
+
+        let cancelAction = UIAlertAction(title: "いいえ", style: .cancel) { _ in
+            // do nothing
+        }
+        confirmDialog.addAction(cancelAction)
+
+        present(confirmDialog, animated: true)
+    }
+
+    @objc
+    private func showSaveImageResult(_ image: UIImage, didFinishSavingWithError error: NSError!, contextInfo: UnsafeMutableRawPointer) {
     }
 }
 
